@@ -13,9 +13,9 @@ const products = [
 
 export function Bestsellers() {
   return (
-    <section className="py-20 px-6 max-w-7xl mx-auto">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto">
       <motion.h2
-        className="font-display text-5xl md:text-6xl font-medium text-center text-foreground mb-16 italic"
+        className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-center text-foreground mb-8 sm:mb-12 md:mb-16 italic"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -23,7 +23,7 @@ export function Bestsellers() {
       >
         Bestsellers
       </motion.h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         {products.map((p, i) => (
           <motion.div
             key={p.name}
@@ -33,7 +33,7 @@ export function Bestsellers() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
           >
-            <div className="aspect-square bg-secondary rounded-2xl overflow-hidden mb-4">
+            <div className="aspect-square bg-secondary rounded-xl sm:rounded-2xl overflow-hidden mb-3 sm:mb-4">
               <img
                 src={p.img}
                 alt={p.name}
@@ -43,11 +43,11 @@ export function Bestsellers() {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <button className="w-full py-2.5 rounded-full bg-primary text-primary-foreground text-xs font-medium tracking-wide uppercase mb-3 hover:opacity-90 transition-opacity">
+            <button className="w-full py-2 sm:py-2.5 rounded-full bg-primary text-primary-foreground text-[10px] sm:text-xs font-medium tracking-wide uppercase mb-2 sm:mb-3 hover:opacity-90 transition-opacity">
               Add to bag — {p.price}
             </button>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground">{p.name}</h3>
-            <p className="text-xs text-muted-foreground mt-1">{p.desc}</p>
+            <h3 className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">{p.name}</h3>
+            <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 sm:mt-1 line-clamp-2">{p.desc}</p>
           </motion.div>
         ))}
       </div>

@@ -11,27 +11,27 @@ const popular = [
 
 export function PopularProducts() {
   return (
-    <section className="py-20 px-6 max-w-7xl mx-auto">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto">
       <motion.h2
-        className="font-display text-5xl md:text-6xl font-medium text-center text-foreground mb-4 italic"
+        className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-center text-foreground mb-3 sm:mb-4 italic"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
         Discover the Popular Products
       </motion.h2>
-      <div className="flex justify-center gap-4 mb-12">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
         {popular.map((p) => (
-          <span key={p.tag} className="px-4 py-1.5 text-xs font-medium bg-secondary rounded-full text-foreground cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors">
+          <span key={p.tag} className="px-3 sm:px-4 py-1.5 text-[10px] sm:text-xs font-medium bg-secondary rounded-full text-foreground cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors">
             {p.tag}
           </span>
         ))}
       </div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
         {popular.map((p, i) => (
           <motion.div
             key={i}
-            className="aspect-square rounded-2xl overflow-hidden bg-secondary group cursor-pointer"
+            className="aspect-square rounded-xl sm:rounded-2xl overflow-hidden bg-secondary group cursor-pointer"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
