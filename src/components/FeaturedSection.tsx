@@ -16,7 +16,7 @@ const subCategories = [
 
 export function FeaturedSection() {
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+    <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto">
       <motion.div
         className="text-center mb-8 sm:mb-10"
         initial={{ opacity: 0, y: 30 }}
