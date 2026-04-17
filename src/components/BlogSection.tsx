@@ -1,22 +1,30 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import blogHero from "@/assets/blog-hero.jpg";
 
 export function BlogSection() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1.05, 1.15]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
+
   return (
-    <section className="relative overflow-hidden">
-      {/* Full-width dark hero image */}
+    <section ref={ref} className="relative overflow-hidden">
       <div className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center justify-center">
-        <img
+        <motion.img
           src={blogHero}
           alt="Beauty editorial"
           loading="lazy"
           width={1920}
           height={1080}
+          style={{ y: imgY, scale: imgScale }}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-warm-black/40" />
         <motion.div
           className="relative z-10 text-center px-6 max-w-3xl mx-auto"
+          style={{ y: textY }}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
