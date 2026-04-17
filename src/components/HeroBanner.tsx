@@ -68,9 +68,7 @@ export function HeroBanner() {
             className="absolute inset-0 w-full h-full object-cover object-top"
             width={1920}
             height={1080}
-            initial={{ scale: 1.05 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            style={{ y: imageY, scale: imageScale }}
           />
         </div>
       </div>
