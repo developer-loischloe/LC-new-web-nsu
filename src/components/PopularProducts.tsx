@@ -51,7 +51,7 @@ export function PopularProducts() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <div className="aspect-[2/3] overflow-hidden bg-secondary rounded-full">
+            <div className="aspect-[1/2] overflow-hidden bg-secondary rounded-full border border-foreground/20">
               <motion.img
                 src={p.img}
                 alt={`Popular product ${i + 1}`}
