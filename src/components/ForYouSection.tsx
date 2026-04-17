@@ -84,14 +84,15 @@ export function ForYouSection() {
             return (
               <motion.div
                 key={i}
-                className="absolute top-0 left-1/2 w-[280px] sm:w-[380px] md:w-[480px] h-full rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer"
-                style={{ zIndex: isActive ? 10 : 10 - absOffset }}
+                className="absolute top-0 left-1/2 w-[260px] sm:w-[360px] md:w-[440px] h-full rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-2xl"
+                style={{ zIndex: 10 - absOffset }}
                 animate={{
-                  x: `calc(-50% + ${offset * 120}px)`,
-                  scale: isActive ? 1 : 0.88 - absOffset * 0.04,
-                  opacity: isActive ? 1 : 0.6,
+                  x: `calc(-50% + ${offset * (offset === 0 ? 0 : 180 + (absOffset - 1) * 60)}px)`,
+                  scale: isActive ? 1 : 0.82 - (absOffset - 1) * 0.06,
+                  opacity: isActive ? 1 : 0.45 - (absOffset - 1) * 0.15,
+                  rotateY: offset * -8,
                 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
                 onClick={() => setActive(i)}
               >
                 <img
