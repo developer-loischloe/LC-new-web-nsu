@@ -62,13 +62,13 @@ export function FeaturedSection() {
             {subCategories.map((cat, i) => (
               <motion.div
                 key={i}
-                className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-square group cursor-pointer"
+                className="relative overflow-hidden aspect-square group cursor-pointer rounded-xl sm:rounded-2xl hover:rounded-full transition-all duration-500 ease-out"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
               >
-                <img src={cat.img} alt="" loading="lazy" width={400} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src={cat.img} alt="" loading="lazy" width={400} height={400} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
               </motion.div>
             ))}
           </div>
