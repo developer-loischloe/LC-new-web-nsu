@@ -84,7 +84,7 @@ export function FeaturedSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <div className="absolute inset-0 flex items-center justify-center p-4">
+            <div className="absolute inset-0 flex items-center justify-center p-4 bg-slate-50">
               <div className="w-full aspect-square rounded-full overflow-hidden relative">
                 <img src={featured2} alt="Water splash" loading="lazy" width={800} height={800} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 flex items-center justify-center">
