@@ -52,8 +52,8 @@ export function PopularProducts() {
             transition={{ duration: 0.7, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <div
-              className="aspect-[2/3] overflow-hidden bg-secondary"
-              style={{ borderRadius: "999px 999px 40% 40%" }}
+              className="aspect-[3/4] overflow-hidden bg-secondary"
+              style={{ borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%" }}
             >
               <motion.img
                 src={p.img}
