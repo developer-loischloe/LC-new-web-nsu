@@ -72,8 +72,8 @@ export function ForYouSection() {
       </motion.h2>
 
       {/* Card carousel */}
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="relative h-[420px] sm:h-[500px] md:h-[560px]">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="relative h-[480px] sm:h-[580px] md:h-[640px]">
           {cards.map((card, i) => {
             const offset = i - active;
             const absOffset = Math.abs(offset);
@@ -84,13 +84,12 @@ export function ForYouSection() {
             return (
               <motion.div
                 key={i}
-                className="absolute top-0 left-1/2 w-[260px] sm:w-[360px] md:w-[440px] h-full rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-2xl"
+                className="absolute top-0 left-1/2 w-[300px] sm:w-[440px] md:w-[560px] h-full rounded-3xl overflow-hidden cursor-pointer shadow-2xl"
                 style={{ zIndex: 10 - absOffset }}
                 animate={{
-                  x: `calc(-50% + ${offset * (offset === 0 ? 0 : 180 + (absOffset - 1) * 60)}px)`,
-                  scale: isActive ? 1 : 0.82 - (absOffset - 1) * 0.06,
-                  opacity: isActive ? 1 : 0.45 - (absOffset - 1) * 0.15,
-                  rotateY: offset * -8,
+                  x: `calc(-50% + ${offset * (offset === 0 ? 0 : 260 + (absOffset - 1) * 80)}px)`,
+                  scale: isActive ? 1 : 0.88 - (absOffset - 1) * 0.06,
+                  opacity: isActive ? 1 : 0.7 - (absOffset - 1) * 0.2,
                 }}
                 transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
                 onClick={() => setActive(i)}
@@ -103,56 +102,70 @@ export function ForYouSection() {
                   height={1024}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-warm-black/30 via-warm-black/20 to-warm-black/60" />
+                {isActive && (
+                  <div className="absolute inset-0 bg-gradient-to-b from-warm-black/20 via-transparent to-warm-black/40" />
+                )}
 
-                {/* Content overlay */}
-                <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-6 md:p-8">
-                  <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontStyle: "normal" }}>
-                    {card.title}
-                  </h3>
-                  <div className="flex items-end justify-between gap-4">
-                    <div className="space-y-3 sm:space-y-4">
-                      {card.stats.map((s, j) => (
-                        <div key={j}>
-                          <span className="font-display text-2xl sm:text-3xl md:text-4xl font-light text-white/90 italic">{s.value}</span>
-                          <p className="text-[8px] sm:text-[10px] text-white/70 uppercase tracking-wider leading-tight mt-0.5 whitespace-pre-line">{s.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                    {/* Product thumbnail */}
-                    <div className="shrink-0 w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl overflow-hidden bg-card/80 backdrop-blur-sm shadow-lg">
-                      <img src={card.product} alt="Product" width={96} height={112} className="w-full h-full object-cover" />
+                {/* Content overlay - only on active card */}
+                {isActive && (
+                  <div className="relative z-10 h-full flex flex-col p-6 sm:p-8 md:p-10">
+                    <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-wide" style={{ fontStyle: "normal" }}>
+                      {card.title}
+                    </h3>
+
+                    {/* Stats block - middle/lower area */}
+                    <div className="mt-auto flex items-end justify-between gap-4">
+                      <div className="space-y-4 sm:space-y-5">
+                        {card.stats.map((s, j) => (
+                          <div key={j}>
+                            <div className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-white leading-none">
+                              {s.value}
+                            </div>
+                            <p className="text-[9px] sm:text-[10px] md:text-[11px] text-white/90 uppercase tracking-wider leading-tight mt-1.5 whitespace-pre-line font-medium">
+                              {s.label}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Product thumbnail - large rounded pill */}
+                      <div className="shrink-0 w-24 h-32 sm:w-28 sm:h-36 md:w-36 md:h-44 rounded-[2rem] overflow-hidden bg-white/90 backdrop-blur-sm shadow-xl">
+                        <img src={card.product} alt="Product" width={144} height={176} className="w-full h-full object-cover" />
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </motion.div>
             );
           })}
         </div>
 
-        {/* Controls */}
-        <div className="flex items-center justify-center gap-3 mt-6 sm:mt-8">
-          <button
-            className="w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground/5 transition-colors"
-            onClick={prev}
-          >
-            <ChevronLeft className="w-4 h-4 text-foreground" />
-          </button>
-          <div className="flex items-center gap-1.5">
-            {cards.map((_, i) => (
-              <span
-                key={i}
-                className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${i === active ? "w-6 bg-foreground" : "w-1.5 bg-foreground/30"}`}
-                onClick={() => setActive(i)}
-              />
-            ))}
+        {/* Controls - pill shaped */}
+        <div className="flex items-center justify-center mt-8 sm:mt-10">
+          <div className="flex items-center gap-4 px-4 py-2.5 rounded-full bg-card/60 backdrop-blur-sm border border-foreground/10 shadow-sm">
+            <button
+              className="flex items-center justify-center hover:opacity-60 transition-opacity"
+              onClick={prev}
+              aria-label="Previous"
+            >
+              <ChevronLeft className="w-4 h-4 text-foreground" />
+            </button>
+            <div className="flex items-center gap-2">
+              {cards.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-[2px] rounded-full transition-all duration-300 cursor-pointer ${i === active ? "w-6 bg-foreground" : "w-3 bg-foreground/30"}`}
+                  onClick={() => setActive(i)}
+                />
+              ))}
+            </div>
+            <button
+              className="flex items-center justify-center hover:opacity-60 transition-opacity"
+              onClick={next}
+              aria-label="Next"
+            >
+              <ChevronRight className="w-4 h-4 text-foreground" />
+            </button>
           </div>
-          <button
-            className="w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground/5 transition-colors"
-            onClick={next}
-          >
-            <ChevronRight className="w-4 h-4 text-foreground" />
-          </button>
         </div>
       </div>
     </section>
