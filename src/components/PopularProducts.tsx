@@ -46,22 +46,27 @@ export function PopularProducts() {
           <motion.div
             key={i}
             className="group cursor-pointer"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <div
-              className="aspect-[2/3] overflow-hidden bg-secondary group-hover:scale-[1.02] transition-transform duration-500"
+              className="aspect-[2/3] overflow-hidden bg-secondary"
               style={{ borderRadius: "999px 999px 40% 40%" }}
             >
-              <img
+              <motion.img
                 src={p.img}
                 alt={`Popular product ${i + 1}`}
                 loading="lazy"
                 width={512}
                 height={800}
                 className="w-full h-full object-cover"
+                initial={{ scale: 1.2 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1.4, ease: "easeOut" }}
+                whileHover={{ scale: 1.06 }}
               />
             </div>
           </motion.div>

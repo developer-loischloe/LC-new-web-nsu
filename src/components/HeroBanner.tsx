@@ -1,14 +1,20 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.jpg";
 import product1 from "@/assets/product-1.jpg";
 
 export function HeroBanner() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section className="relative w-full min-h-[85vh] overflow-hidden bg-background">
+    <section ref={sectionRef} className="relative w-full min-h-[85vh] overflow-hidden bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-stretch min-h-[85vh]">
         {/* Left content */}
         <div className="relative z-10 flex flex-col justify-center py-12 md:py-20 md:w-1/2 md:pr-8">
@@ -62,9 +68,7 @@ export function HeroBanner() {
             className="absolute inset-0 w-full h-full object-cover object-top"
             width={1920}
             height={1080}
-            initial={{ scale: 1.05 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            style={{ y: imageY, scale: imageScale }}
           />
         </div>
       </div>

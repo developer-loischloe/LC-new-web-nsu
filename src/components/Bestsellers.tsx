@@ -36,13 +36,18 @@ export function Bestsellers() {
             transition={{ duration: 0.5, delay: i * 0.1 }}
           >
             <div className="relative aspect-[4/5] bg-secondary rounded-2xl sm:rounded-3xl overflow-hidden mb-4">
-              <img
+              <motion.img
                 src={p.img}
                 alt={p.name}
                 loading="lazy"
                 width={800}
                 height={800}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover"
+                initial={{ scale: 1.15 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                whileHover={{ scale: 1.08 }}
               />
               {/* ADD TO BAG button overlaid at bottom */}
               <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2">
