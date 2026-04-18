@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Instagram, Heart } from "lucide-react";
 import insta1 from "@/assets/popular-1.jpg";
 import insta2 from "@/assets/popular-2.jpg";
@@ -8,22 +8,23 @@ import insta4 from "@/assets/popular-4.jpg";
 import insta5 from "@/assets/foryou-1.jpg";
 import insta6 from "@/assets/foryou-2.jpg";
 
+const HANDLE = "@loischloe_bangladesh";
+const PROFILE_URL = "https://www.instagram.com/loischloe_bangladesh/";
+
 const posts = [
-  { img: insta1, likes: "2.4k", handle: "@oleo.shop" },
-  { img: insta2, likes: "1.8k", handle: "@oleo.shop" },
-  { img: insta3, likes: "3.1k", handle: "@oleo.shop" },
-  { img: insta4, likes: "967", handle: "@oleo.shop" },
-  { img: insta5, likes: "4.2k", handle: "@oleo.shop" },
-  { img: insta6, likes: "2.0k", handle: "@oleo.shop" },
+  { img: insta1, likes: "2.4k", handle: HANDLE },
+  { img: insta2, likes: "1.8k", handle: HANDLE },
+  { img: insta3, likes: "3.1k", handle: HANDLE },
+  { img: insta4, likes: "967", handle: HANDLE },
+  { img: insta5, likes: "4.2k", handle: HANDLE },
+  { img: insta6, likes: "2.0k", handle: HANDLE },
 ];
 
 export function InstagramFeed() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const marqueeX = useTransform(scrollYProgress, [0, 1], ["5%", "-15%"]);
 
   return (
-    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto">
       <motion.div
         className="text-center mb-10 sm:mb-14"
         initial={{ opacity: 0, y: 30 }}
