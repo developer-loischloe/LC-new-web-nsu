@@ -57,7 +57,9 @@ export function InstagramFeed() {
         {posts.map((post, i) => (
           <motion.a
             key={i}
-            href="#"
+            href={PROFILE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative aspect-square overflow-hidden rounded-2xl bg-secondary cursor-pointer"
             initial={{ opacity: 0, y: 60, rotate: i % 2 === 0 ? -3 : 3 }}
             whileInView={{ opacity: 1, y: 0, rotate: 0 }}
