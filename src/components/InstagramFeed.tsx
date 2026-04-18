@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Instagram, Heart } from "lucide-react";
 import insta1 from "@/assets/popular-1.jpg";
 import insta2 from "@/assets/popular-2.jpg";
@@ -8,22 +8,23 @@ import insta4 from "@/assets/popular-4.jpg";
 import insta5 from "@/assets/foryou-1.jpg";
 import insta6 from "@/assets/foryou-2.jpg";
 
+const HANDLE = "@loischloe_bangladesh";
+const PROFILE_URL = "https://www.instagram.com/loischloe_bangladesh/";
+
 const posts = [
-  { img: insta1, likes: "2.4k", handle: "@oleo.shop" },
-  { img: insta2, likes: "1.8k", handle: "@oleo.shop" },
-  { img: insta3, likes: "3.1k", handle: "@oleo.shop" },
-  { img: insta4, likes: "967", handle: "@oleo.shop" },
-  { img: insta5, likes: "4.2k", handle: "@oleo.shop" },
-  { img: insta6, likes: "2.0k", handle: "@oleo.shop" },
+  { img: insta1, likes: "2.4k", handle: HANDLE },
+  { img: insta2, likes: "1.8k", handle: HANDLE },
+  { img: insta3, likes: "3.1k", handle: HANDLE },
+  { img: insta4, likes: "967", handle: HANDLE },
+  { img: insta5, likes: "4.2k", handle: HANDLE },
+  { img: insta6, likes: "2.0k", handle: HANDLE },
 ];
 
 export function InstagramFeed() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const marqueeX = useTransform(scrollYProgress, [0, 1], ["5%", "-15%"]);
 
   return (
-    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto">
       <motion.div
         className="text-center mb-10 sm:mb-14"
         initial={{ opacity: 0, y: 30 }}
@@ -40,7 +41,7 @@ export function InstagramFeed() {
         >
           <Instagram className="w-3.5 h-3.5 text-foreground" />
           <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-foreground font-medium">
-            Follow us @oleo.shop
+            Follow us {HANDLE}
           </span>
         </motion.div>
         <h2
@@ -51,12 +52,14 @@ export function InstagramFeed() {
         </h2>
       </motion.div>
 
-      {/* Parallax marquee row */}
-      <motion.div style={{ x: marqueeX }} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+      {/* Responsive grid */}
+      <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
         {posts.map((post, i) => (
           <motion.a
             key={i}
-            href="#"
+            href={PROFILE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative aspect-square overflow-hidden rounded-2xl bg-secondary cursor-pointer"
             initial={{ opacity: 0, y: 60, rotate: i % 2 === 0 ? -3 : 3 }}
             whileInView={{ opacity: 1, y: 0, rotate: 0 }}
@@ -103,7 +106,9 @@ export function InstagramFeed() {
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         <motion.a
-          href="#"
+          href={PROFILE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-foreground text-background text-xs sm:text-sm font-semibold uppercase tracking-wider"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
