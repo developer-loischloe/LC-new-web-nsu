@@ -25,8 +25,8 @@ export function Navbar() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
-          <Link to="/" className="font-display text-lg sm:text-xl font-bold tracking-tight text-foreground" style={{ fontStyle: "normal" }}>
-            olivia shop
+          <Link to="/" className="font-display text-lg sm:text-xl font-bold tracking-tight text-foreground uppercase" style={{ fontStyle: "normal" }}>
+            LOIS CHLOE
           </Link>
           <button
             className="absolute left-1/2 -translate-x-1/2 p-2"
