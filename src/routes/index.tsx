@@ -6,6 +6,7 @@ import { FeaturedSection } from "@/components/FeaturedSection";
 import { PopularProducts } from "@/components/PopularProducts";
 import { BlogSection } from "@/components/BlogSection";
 import { ForYouSection } from "@/components/ForYouSection";
+import { InstagramFeed } from "@/components/InstagramFeed";
 import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
@@ -31,6 +32,7 @@ function Index() {
         <PopularProducts />
         <BlogSection />
         <ForYouSection />
+        <InstagramFeed />
       </main>
       <Footer />
     </div>
