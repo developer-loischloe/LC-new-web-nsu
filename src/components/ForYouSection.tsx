@@ -91,9 +91,9 @@ export function ForYouSection() {
                 className="absolute top-0 left-1/2 w-[300px] sm:w-[440px] md:w-[560px] h-full rounded-3xl overflow-hidden cursor-pointer shadow-2xl"
                 style={{ zIndex: 10 - absOffset }}
                 animate={{
-                  x: `calc(-50% + ${offset * (offset === 0 ? 0 : 260 + (absOffset - 1) * 80)}px)`,
-                  scale: isActive ? 1 : 0.88 - (absOffset - 1) * 0.06,
-                  opacity: isActive ? 1 : 0.7 - (absOffset - 1) * 0.2,
+                  x: `calc(-50% + ${offset * (offset === 0 ? 0 : 200 + (absOffset - 1) * 70)}px)`,
+                  scale: isActive ? 1 : 0.94 - (absOffset - 1) * 0.05,
+                  opacity: isActive ? 1 : 0.9 - (absOffset - 1) * 0.25,
                 }}
                 transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
                 onClick={() => setActive(i)}
