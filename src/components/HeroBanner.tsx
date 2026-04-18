@@ -36,18 +36,40 @@ export function HeroBanner() {
             className="max-w-2xl"
           >
             <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
-              {["MORNING CARE", "SKIN CARE", "NATURE PRODUCT"].map((tag) => (
-                <span key={tag} className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium bg-cream-dark/60 rounded-full text-foreground uppercase tracking-wider">
+              {["MORNING CARE", "SKIN CARE", "NATURE PRODUCT"].map((tag, i) => (
+                <motion.span
+                  key={tag}
+                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium bg-cream-dark/60 rounded-full text-foreground uppercase tracking-wider cursor-pointer"
+                >
                   {tag}
-                </span>
+                </motion.span>
               ))}
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground mb-4 sm:mb-6">
-              Glow Naturally with Ecococo Morning Sun
+              {"Glow Naturally with Ecococo Morning Sun".split(" ").map((word, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block mr-[0.25em]"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.5 + i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </h1>
-            <p className="text-sm sm:text-base text-foreground/80 leading-relaxed max-w-md">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.1 }}
+              className="text-sm sm:text-base text-foreground/80 leading-relaxed max-w-md"
+            >
               Start your day with a burst of radiance! Our Vitamin C-infused formula nourishes and revitalizes your skin, leaving it hydrated, protected, and naturally glowing from morning to night.
-            </p>
+            </motion.p>
           </motion.div>
         </div>
 
@@ -56,21 +78,34 @@ export function HeroBanner() {
           {/* Product promo card */}
           <motion.div
             className="bg-card rounded-2xl p-4 w-full max-w-[260px] sm:max-w-xs shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            initial={{ opacity: 0, y: 40, rotate: -4 }}
+            animate={{ opacity: 1, y: 0, rotate: 0 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+            whileHover={{ y: -6, rotate: 1, transition: { duration: 0.3 } }}
           >
             <div className="flex items-start justify-between mb-3">
               <div>
                 <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">LIMITED TIME – 30%</p>
                 <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground mt-0.5">Morning Care</h3>
               </div>
-              <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground flex items-center justify-center shrink-0">
+              <motion.span
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground flex items-center justify-center shrink-0"
+                whileHover={{ rotate: 45, scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              >
                 <ArrowUpRight className="w-4 h-4 text-background" />
-              </span>
+              </motion.span>
             </div>
             <div className="rounded-xl overflow-hidden aspect-square bg-secondary">
-              <img src={product1} alt="Morning care product" width={400} height={400} className="w-full h-full object-cover" />
+              <motion.img
+                src={product1}
+                alt="Morning care product"
+                width={400}
+                height={400}
+                className="w-full h-full object-cover"
+                whileHover={{ scale: 1.08 }}
+                transition={{ duration: 0.5 }}
+              />
             </div>
           </motion.div>
 
