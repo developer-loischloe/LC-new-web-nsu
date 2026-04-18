@@ -41,7 +41,7 @@ export function InstagramFeed() {
         >
           <Instagram className="w-3.5 h-3.5 text-foreground" />
           <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-foreground font-medium">
-            Follow us @oleo.shop
+            Follow us {HANDLE}
           </span>
         </motion.div>
         <h2
@@ -52,8 +52,8 @@ export function InstagramFeed() {
         </h2>
       </motion.div>
 
-      {/* Parallax marquee row */}
-      <motion.div style={{ x: marqueeX }} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+      {/* Responsive grid */}
+      <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
         {posts.map((post, i) => (
           <motion.a
             key={i}
