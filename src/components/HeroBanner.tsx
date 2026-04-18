@@ -10,14 +10,12 @@ export function HeroBanner() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
   const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <section ref={sectionRef} className="relative w-full min-h-[85vh] overflow-hidden bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-stretch min-h-[85vh]">
+      <div className="flex flex-col md:flex-row items-stretch min-h-[85vh]">
         {/* Left content */}
-        <div className="relative z-10 flex flex-col justify-center py-12 md:py-20 md:w-1/2 md:pr-8">
+        <div className="relative z-10 flex flex-col justify-center py-12 md:py-20 md:w-1/2 px-4 sm:px-6 md:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] md:pr-8">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -39,7 +37,7 @@ export function HeroBanner() {
 
             {/* Product promo card */}
             <motion.div
-              className="bg-card rounded-2xl p-4 max-w-sm shadow-sm"
+              className="bg-card rounded-2xl p-4 max-w-xs shadow-sm"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -53,14 +51,14 @@ export function HeroBanner() {
                   <ArrowUpRight className="w-4 h-4 text-background" />
                 </span>
               </div>
-              <div className="rounded-xl overflow-hidden aspect-[16/10] bg-secondary">
-                <img src={product1} alt="Morning care product" width={400} height={250} className="w-full h-full object-cover" />
+              <div className="rounded-xl overflow-hidden aspect-square bg-secondary">
+                <img src={product1} alt="Morning care product" width={400} height={400} className="w-full h-full object-cover" />
               </div>
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Right hero image */}
+        {/* Right hero image - flush to edge */}
         <div className="relative md:w-1/2 min-h-[300px] md:min-h-0">
           <motion.img
             src={heroBanner}
@@ -70,31 +68,31 @@ export function HeroBanner() {
             height={1080}
             style={{ y: imageY, scale: imageScale }}
           />
-        </div>
-      </div>
 
-      {/* Carousel controls */}
-      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3">
-        <button
-          className="w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground/5 transition-colors"
-          onClick={() => setActiveSlide(Math.max(0, activeSlide - 1))}
-        >
-          <ChevronLeft className="w-4 h-4 text-foreground" />
-        </button>
-        <div className="flex items-center gap-1.5">
-          {[0, 1, 2, 3].map((i) => (
-            <span
-              key={i}
-              className={`h-1 rounded-full transition-all duration-300 ${i === activeSlide ? "w-6 bg-foreground" : "w-1.5 bg-foreground/30"}`}
-            />
-          ))}
+          {/* Carousel controls positioned under right image area */}
+          <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10">
+            <button
+              className="w-8 h-8 rounded-full border border-foreground/20 bg-background/80 backdrop-blur flex items-center justify-center hover:bg-foreground/5 transition-colors"
+              onClick={() => setActiveSlide(Math.max(0, activeSlide - 1))}
+            >
+              <ChevronLeft className="w-4 h-4 text-foreground" />
+            </button>
+            <div className="flex items-center gap-1.5">
+              {[0, 1, 2, 3].map((i) => (
+                <span
+                  key={i}
+                  className={`h-1 rounded-full transition-all duration-300 ${i === activeSlide ? "w-6 bg-foreground" : "w-1.5 bg-foreground/50"}`}
+                />
+              ))}
+            </div>
+            <button
+              className="w-8 h-8 rounded-full border border-foreground/20 bg-background/80 backdrop-blur flex items-center justify-center hover:bg-foreground/5 transition-colors"
+              onClick={() => setActiveSlide(Math.min(3, activeSlide + 1))}
+            >
+              <ChevronRight className="w-4 h-4 text-foreground" />
+            </button>
+          </div>
         </div>
-        <button
-          className="w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground/5 transition-colors"
-          onClick={() => setActiveSlide(Math.min(3, activeSlide + 1))}
-        >
-          <ChevronRight className="w-4 h-4 text-foreground" />
-        </button>
       </div>
     </section>
   );
