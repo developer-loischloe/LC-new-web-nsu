@@ -75,7 +75,11 @@ export function ForYouSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div className="relative h-[480px] sm:h-[580px] md:h-[640px]">
           {cards.map((card, i) => {
-            const offset = i - active;
+            // Compute circular offset so cards always appear on both sides
+            const len = cards.length;
+            let offset = i - active;
+            if (offset > len / 2) offset -= len;
+            if (offset < -len / 2) offset += len;
             const absOffset = Math.abs(offset);
             const isActive = i === active;
 
